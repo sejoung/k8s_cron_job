@@ -17,6 +17,8 @@ kubectl create -f ./yaml/job.yaml
 
 kubectl create -f ./yaml/spring_batch_error_job.yaml
 
+kubectl create -f ./yaml/spring_batch_init_error_job.yaml
+
 kubectl create -f ./yaml/cronjob.yaml
 
 kubectl create -f ./yaml/cronjob_concurrenct_policy.yaml
