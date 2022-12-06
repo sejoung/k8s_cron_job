@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+    name: cron-job-test
+spec:
+    schedule: "*/1 * * * *"
+    jobTemplate:
+        spec:
+            ttlSecondsAfterFinished: 10000
+            template:
+                spec:
+                    containers:
+                    - name: concurrency-policy-forbid-test
+                      image: alpine
+                      command: ["sh", "-c", "echo 'job start';sleep 40; echo 'job end'"]
+                    restartPolicy: Never

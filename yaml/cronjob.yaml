@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+    name: cron-job-test
+spec:
+    schedule: "*/1 * * * *"
+    concurrencyPolicy: Forbid
+    successfulJobsHistoryLimit: 2
+    failedJobsHistoryLimit: 5
+    jobTemplate:
+        spec:
+            ttlSecondsAfterFinished: 100
+            template:
+                spec:
+                    containers:
+                        - name: pi
+                          image: perl:5.34.0
+                          command: [ "perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)" ]
+                    restartPolicy: Never
